@@ -107,7 +107,7 @@ user3:host3:sshport:password
 在SecureCRT中直接打开server.txt中的所有服务器。
 
 ### ak-jailkit.sh
-CentOS下Jailkit自动设置。从https://olivier.sessink.nl/jailkit/安装后，执行该脚本即可。
+CentOS下Jailkit自动设置。从 https://olivier.sessink.nl/jailkit/ 编译安装后，执行该脚本即可。
 
 默认创建了用户：`goosr`，密码：`123456`。测试完毕之后，记得及时删除或修改。
 
