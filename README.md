@@ -29,6 +29,21 @@ MySQL/MariaDB的实时状态监控。
 ### ak-mysql-pretty-slowlog.pl
 MySQL慢日志对技术人员是比较有价值的，不过默认的slow log查看起来不是非常美观，经过本脚本美颜之后，就赏心悦目多了。
 
+### ak-php-fpm-slowlog.pl
+PHP-FPM慢日志对技术人员是比较有价值的，不过默认的slow log查看起来不是非常方便，经过本脚本稍作分析之后，大家就更能有的放矢了。
+
+```
+PHP页面: /var/www/sites/xxx.com/projects/index.php 执行缓慢，累计 587 次。
+       > 涉及函数: session_start() /var/www/sites/xxx.com/vendor/yiisoft/yii2/web/Session.php:131 ，累计 482 次。
+       > 涉及函数: execute() /var/www/sites/xxx.com/vendor/yiisoft/yii2/db/Command.php:900 ，累计 22 次。
+       > 涉及函数: curl_exec() /var/www/sites/xxx.com/common/service/HttpClient.php:36 ，累计 71 次。
+PHP页面: /var/www/sites/xxx.com/pay/index.php 执行缓慢，累计 326 次。
+       > 涉及函数: session_start() /var/www/sites/xxx.com/vendor/yiisoft/yii2/web/Session.php:131 ，累计 172 次。
+       > 涉及函数: curl_exec() /var/www/sites/xxx.com/pay/protected/extensions/wechat/axc_prod/lib/WxPay.Api.php:580 ，累计 94 次。
+       > 涉及函数: curl_exec() /var/www/sites/xxx.com/pay/protected/extensions/wechat/axc_prod/app/WxPay.JsApiPay.php:118 ，累计 57 次。
+```
+
+
 ### ak-vsftpd-install.sh
 一键部署vsftpd FTP服务器。
 
