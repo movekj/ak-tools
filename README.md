@@ -158,3 +158,5 @@ CentOS下Jailkit自动设置。从 https://olivier.sessink.nl/jailkit/ 编译安
 ### ak-ldap-tool.sh
 SSH+LDAP登录，之前为了方便LDAP用户管理写的一个脚本。
 
+### ak-ce-cloud-360-cn.py
+调用http://ce.cloud.360.cn进行网站或网络的速度测试
