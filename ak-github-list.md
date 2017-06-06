@@ -48,7 +48,7 @@
 
   <https://github.com/sourcelair/xterm.js>
 
-- A beautiful replacement for JavaScript's "alert" 
+- A beautiful replacement for JavaScripts "alert" 
 
   <https://github.com/t4t5/sweetalert>
 
@@ -96,6 +96,10 @@
 
   <https://github.com/saltstack/salt>
 
+- Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy. 
+
+  <https://github.com/ansible/ansible>
+
 - GoReplay is an open-source tool for capturing and replaying live HTTP traffic into a test environment in order to continuously test your system with real data.
 
   <https://github.com/buger/goreplay>
@@ -139,3 +143,43 @@
 - 一个集审核、执行、备份及生成回滚语句于一身的MySQL自动化运维工具
 
   <https://github.com/mysql-inception/inception>
+
+- Convert text with ansi color codes to HTML
+
+  <https://github.com/ralphbean/ansi2html>
+
+- 漢籍リポジトリ
+
+  <https://github.com/kanripo>
+
+- lz4 - Extremely Fast Compression algorithm
+
+  <https://github.com/lz4/lz4>
+
+- fpm - Effing package management! Build packages for multiple platforms (deb, rpm, etc) with great ease and sanity.
+
+  <https://github.com/jordansissel/fpm>
+
+- Ruby enVironment Manager (RVM) 
+
+  <https://github.com/rvm/rvm>
+
+- Embed the Power of Lua into NGINX HTTP servers 
+
+  <https://github.com/openresty/lua-nginx-module>
+
+- A very powerful and friendly nginx base on lua-nginx-module( openresty ) which provide WAF, Control Panel, and Dashboards.
+
+  <https://github.com/alexazhou/VeryNginx>
+
+- High-performance WAF built on the OpenResty stack
+  
+  <https://github.com/p0pr0ck5/lua-resty-waf>
+
+- The one and only one gfwlist here
+ 
+  <https://github.com/gfwlist/gfwlist>
+
+- CodePush service is hot update services which adapter react-native-code-push and cordova-plugin-code-push 
+ 
+  <https://github.com/lisong/code-push-server>
