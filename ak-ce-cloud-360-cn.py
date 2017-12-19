@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# 
+#
 # Description:
 #     * send task to http://ce.cloud.360.cn/ and fetch the result (website check or ping check).
-# Usage:   
+# Usage:
 #     * ak-ce-cloud-360-cn.py get  <url>
 #     * ak-ce-cloud-360-cn.py ping <domain>
 
@@ -63,6 +63,12 @@ def get_location(target_ip):
     country=gict.country_code_by_addr(target_ip)
     asnum=gia.org_by_addr(target_ip)
     asnum=re.sub(r'AS\d+\s+','',asnum)
+    if not country:
+        country = ''
+    if not asnum:
+        asnum = ''
+    if not city:
+        city = ''
     return country + "." + city + "." + asnum
 
 # usage
@@ -162,49 +168,49 @@ print '-' * 120
 print "+++++++++++++++++++++++++++++++++++++++++++++++++++++ Test Result ++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 print '-' * 120
 for province in j['province_table'].keys():
-    #print province
-    try:
-        for city in j['province_table'][province]['data'].keys():
-            for node in j['province_table'][province]['data'][city]:
-                total_node_count += 1
-                try:
-                    if action_type == 'ping':
-                        mtime = node['min_time']
-                        min_time = str(node['min_time']) + 'ms'
-                        avg_time = str(node['avg_time']) + 'ms'
-                        max_time = str(node['max_time']) + 'ms'
-                        isp = node['isp']
-                        ip = node['ip']
-                        ip_location = get_location(ip)
-                        node_location =  city + "-" + isp
-                        node_location=myAlign(node_location, 20)
+    if not j['province_table'][province]:
+        continue
+    for city in j['province_table'][province]['data'].keys():
+        for node in j['province_table'][province]['data'][city]:
+            try:
+                if action_type == 'ping':
+                    total_node_count += 1
+                    mtime = node['min_time']
+                    min_time = str(node['min_time']) + 'ms'
+                    avg_time = str(node['avg_time']) + 'ms'
+                    max_time = str(node['max_time']) + 'ms'
+                    isp = node['isp']
+                    ip = node['ip']
+                    ip_location = get_location(ip)
+                    node_location =  city + "-" + isp
+                    node_location=myAlign(node_location, 20)
 
-                        if mtime > 0.01:
-                            ok_node_count += 1
-                            print ( "%s | %-15s | %-10s | %-10s | %-10s | %s" % ( node_location,ip, min_time,max_time,avg_time,ip_location))
-                        else:
-                            print ( "%s | %-15s | %-10s | %-10s | %-10s | %s" % (  bcolors.WARNING + node_location,ip, min_time,max_time,avg_time,ip_location  + bcolors.ENDC))
+                    if mtime > 0.01:
+                        ok_node_count += 1
+                        print "%s | %-15s | %-10s | %-10s | %-10s | %s" % ( node_location,ip, min_time,max_time,avg_time,ip_location)
                     else:
-                        retcode = node['retcode']
-                        conntime = str(node['conntime']) + 'ms'
-                        dtime = str(node['dtime']) + 'ms'
-                        dsize = str(node['dsize'])
-                        isp = node['isp']
-                        ip = node['ip']
+                        print "%s | %-15s | %-10s | %-10s | %-10s | %s" % (  bcolors.WARNING + node_location,ip, min_time,max_time,avg_time,ip_location  + bcolors.ENDC)
+                else:
+                    total_node_count += 1
+                    retcode = node.get('retcode', 'null')
+                    if retcode in ['200','301', '302']:
+                        ok_node_count += 1
+                    conntime = str(node.get('conntime', 'null')) + 'ms'
+                    dtime = str(node.get('dtime', 'null')) + 'ms'
+                    dsize = str(node.get('dsize', 'null'))
+                    isp = node.get('isp', 'null')
+                    ip = node.get('ip', 'null')
+                    if not ip == 'null':
                         ip_location = get_location(ip)
                         node_location =  city + "-" + isp
                         node_location=myAlign(node_location, 20)
-
-                        if retcode in [200,301,302]:
-                            ok_node_count += 1
-                        print ( "%s | %-15s | %-6s | %-12s | %-12s | %-12s | %s" % ( node_location,ip,retcode,conntime,dtime,dsize,ip_location))
-                except Exception as e:
-                    print   city + node + str(e)
-                    pass
-    except Exception as e:
-        # the province doesn't have any nodes
-        #print str(e)
-        pass
+                    else:
+                        ip_location = 'null'
+                        node_location = 'null'
+                    print "%s | %-15s | %-6s | %-12s | %-12s | %-12s | %s" % ( node_location,ip,retcode,conntime,dtime,dsize,ip_location)
+                    ok_node_count += 1
+            except Exception as e:
+                print e
 
 print '-' * 120
 print "+ OK Nodes:" + str(ok_node_count)
